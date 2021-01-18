@@ -1,0 +1,26 @@
+<h1><%= @blogger.name %>'s Page </h1>
+
+
+<% @blogger.posts.each do |post| %>
+   <ul>
+    <li> <h2> Article: <%= post.title %> </h2>
+    <p style="color:red"> Num of Likes: <%= post.likes %></p>
+    </li>
+    </ul>
+    
+ <%end%>
+
+
+ <% blog = @blogger.posts.order(likes: :desc).first %>
+    <% if blog.nil? %>
+        <p> This blogger hasn't posted yet! </p> 
+        <%else%>
+    <h2 style="color:blue"> MOST POPULAR POST! </h2>
+    <h3> <%= link_to blog.title, post_path(blog) %></h3>
+    <%end%>
+
+
+
+
+
+    

@@ -1,0 +1,36 @@
+<h1><%= @destination.name %>'s Page </h1>
+
+
+        
+
+        <% if @destination.bloggers.empty? %>
+            <p> Average Age of Blogger: No Bloggers have Contributed </p>
+        <% else %>
+            <%bloggers = @destination.bloggers %>
+            <%bloggers_age = bloggers.map{|blogger| blogger.age}.sum%>
+            <%bloggers_avg_age = bloggers_age / (@destination.bloggers.count) %>
+            <h3> Average Age of Blogger: <%=bloggers_avg_age%> </h3>
+            <%end%>
+
+        <% if @destination.posts.empty? %>
+            <p> No one has written about this place yet! </p>
+        <% else %>
+            <h3 style='color:green'> FEATURED POST </h3>
+            <%posts = @destination.posts %>
+            <%most_liked_post = posts.order(likes: :desc).first%>
+            <%= link_to most_liked_post.title, post_path(most_liked_post) %>
+        <%end%>
+
+        <% if @destination.posts.empty? %>
+            <p> No posts available for this place! You could be the first one! </p>
+        <% else %> 
+            <h3 style='color:orange'> All Posts on <%=@destination.name%> </h3>
+            <%posts = @destination.posts%>
+            <%time_of_post = posts.limit(5).order(created_at: :desc)%>
+                <% time_of_post.map do |post| %>
+                    <li>
+                        <%= post.title %>
+                    </li>
+                <%end%>
+        <%end%>
+

@@ -1,0 +1,14 @@
+<h1><%= @post.title %></h1>
+
+<p> Written By: <%=@post.blogger.name%>
+
+<p> This post is written about <%=@post.destination.name%> </p>
+
+<p> <%=@post.content%> </p>
+
+<%= button_to "Like", like_path(@post) %>
+
+
+
+
+

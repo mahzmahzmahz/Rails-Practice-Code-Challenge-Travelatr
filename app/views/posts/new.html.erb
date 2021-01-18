@@ -1,0 +1,16 @@
+<h1>New Post</h1>
+
+<%= form_for @post do |f| %>
+    <%=f.label :title, "Title:"%>
+    <%=f.text_field :title %>
+    <%=f.label :content, "What have you got to say?"%>
+    <%=f.text_field :content, :size => 150 %>
+    <%=f.label :blogger_id, "Who's writing it?"%>
+    <%=f.collection_select :blogger_id, Blogger.all, :id, :name %>
+    <%=f.label :destination_id, "What destination are you writting about?"%>
+    <%=f.collection_select :destination_id, Destination.all, :id, :name %>
+    <%=f.submit "Create Post"%>
+<%end%>
+
+
+
